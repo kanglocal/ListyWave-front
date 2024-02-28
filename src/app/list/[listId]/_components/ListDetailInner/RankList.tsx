@@ -92,9 +92,13 @@ function DetailList({ listData }: RankListProps) {
           <div className={styles.titleText}>{item.title}</div>
         </div>
         {item.comment && <div className={styles.commentText}>{item.comment}</div>}
-        <div className={styles.detailImageWrapper}>
-          {item.imageUrl && <Image className={styles.detailImage} src={item.imageUrl} alt={item.title} fill={true} />}
-        </div>
+
+        {item.imageUrl && (
+          <div className={styles.detailImageWrapper}>
+            <img className={styles.detailImage} src={item.imageUrl} alt={item.title} />
+          </div>
+        )}
+
         {item.link && <EmbedComponent link={item.link} />}
       </div>
     );
@@ -102,6 +106,7 @@ function DetailList({ listData }: RankListProps) {
 }
 
 function RankList({ listData, type, backgroundColor }: RankListProps) {
+  console.log(type);
   const { language } = useLanguage();
   return (
     <div
