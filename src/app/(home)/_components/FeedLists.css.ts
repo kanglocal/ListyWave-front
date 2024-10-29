@@ -1,11 +1,11 @@
 import { style, createVar, keyframes } from '@vanilla-extract/css';
 import { vars } from '@/styles/__theme.css';
-import { headlineSmall, bodyMedium, bodySmall, labelSmall } from '@/styles/__font.css';
+import { headlineSmall } from '@/styles/__font.css';
 
 export const listBackground = createVar();
 
 export const wrapperOuter = style({
-  padding: '0 16px 70px',
+  padding: '0 16px 30px',
   marginTop: '12px',
 
   display: 'flex',
@@ -58,6 +58,8 @@ export const listTopWrapper = style({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'space-between',
+
+  marginBottom: '8px',
 });
 
 export const version = style({
@@ -110,8 +112,8 @@ export const ownerNicknameText = style({
 });
 
 export const profileImageWrapper = style({
-  width: '40px',
-  height: '40px',
+  width: '30px',
+  height: '30px',
 
   position: 'relative',
 });
