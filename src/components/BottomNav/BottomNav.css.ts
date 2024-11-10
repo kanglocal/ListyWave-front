@@ -11,6 +11,7 @@ export const bottomTapContainer = style({
   display: 'flex',
 
   backgroundColor: vars.color.bggray,
+  zIndex: 1,
 });
 
 const bottomTap = style({

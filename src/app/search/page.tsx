@@ -4,20 +4,31 @@ import CategoryArea from '@/app/search/_components/CategoryArea';
 import SearchResult from '@/app/search/_components/SearchResult';
 import * as styles from './Search.css';
 import KeywordArea from '@/app/search/_components/KeywordArea';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { useState, KeyboardEvent, MouseEvent, ChangeEvent } from 'react';
-import PlusButton from '@/components/floatingButton/PlusOptionFloatingButton';
-import ArrowUpButton from '@/components/floatingButton/ArrowUpFloatingButton';
+import ShareLinkButton from '@/components/floatingButton/ShareLinkButton';
+import ArrowUpButton from '@/components/floatingButton/ArrowUpButton';
 import FloatingContainer from '@/components/floatingButton/FloatingContainer';
 import makeSearchUrl from '@/app/search/util/makeSearchUrl';
+import { searchLocale } from '@/app/search/locale';
+import { useLanguage } from '@/store/useLanguage';
 import Header from '@/app/search/_components/Header';
 
 export default function Search() {
+  const { language } = useLanguage();
   const router = useRouter();
+  const searchParams = useSearchParams();
 
   const [keyword, setKeyword] = useState('');
   const [category, setCategory] = useState('');
   const [sort, setSort] = useState('');
+
+  // useEffect(() => {
+  //   // 페이지 첫 로드시 검색어와 카테고리 설정
+  //   setKeyword(searchParams?.get('keyword') ?? '');
+  //   setCategory(searchParams?.get('category') ?? 'entire');
+  //   setSort(searchParams?.get('sort') ?? 'new');
+  // }, [searchParams]);
 
   const handleKeywordChange = (e: ChangeEvent<HTMLInputElement>) => {
     setKeyword(e.target.value);
@@ -52,8 +63,8 @@ export default function Search() {
         </div>
         <SearchResult />
         <FloatingContainer>
-          <PlusButton />
           <ArrowUpButton />
+          <ShareLinkButton />
         </FloatingContainer>
       </div>
     </div>

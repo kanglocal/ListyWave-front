@@ -1,6 +1,7 @@
 import { style, styleVariants, ComplexStyleRule } from '@vanilla-extract/css';
-import { vars } from '@/styles/__theme.css';
+import { vars } from '@/styles/theme.css';
 
+//TODO: 공용모달 ver3.0 새디자인 필요
 export const background = style({
   margin: 'auto',
   width: '100vw',
@@ -14,7 +15,6 @@ export const background = style({
   alignItems: 'center',
 
   backgroundColor: 'rgba(25, 25, 27, 0.3)',
-  pointerEvents: 'none',
 });
 
 const container = style({

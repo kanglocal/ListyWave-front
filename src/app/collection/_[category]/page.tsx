@@ -2,7 +2,7 @@
 
 import { useRouter, useParams } from 'next/navigation';
 
-import Header from '@/components/Header/Header';
+import Header from '@/components/Header/__Header';
 import * as styles from './page.css';
 import { useInfiniteQuery, useQueryClient } from '@tanstack/react-query';
 import { QUERY_KEYS } from '@/lib/constants/queryKeys';
@@ -10,7 +10,7 @@ import { useEffect, useMemo } from 'react';
 import useIntersectionObserver from '@/hooks/useIntersectionObserver';
 import getCollection from '@/app/_api/collect/__getCollection';
 import Top3CardSkeleton from '@/app/collection/_[category]/_components/Top3CardSkeleton';
-import NoData from '@/app/collection/_[category]/_components/NoData';
+import NoData from '@/app/collection/[folderId]/_components/NoData';
 import { CollectionType } from '@/lib/types/listType';
 import Top3Card from '@/app/collection/_[category]/_components/Top3Card';
 import { categoriesLocale } from '@/app/collection/locale';

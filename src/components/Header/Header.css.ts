@@ -18,10 +18,11 @@ export const header = style({
   alignItems: 'center',
 
   backgroundColor: vars.color.bggray,
+  color: vars.color.black,
 });
 
 export const flexChild = style({
-  flex: '1',
+  flex: 'auto',
 });
 
 export const headerTitle = style([
@@ -35,6 +36,7 @@ export const leftChild = style([
   fonts.BodyRegular,
   {
     display: 'flex',
+    flex: 1,
     justifyContent: 'left',
     color: vars.color.bluegray10,
   },
@@ -44,6 +46,7 @@ export const rightChild = style([
   fonts.BodyRegular,
   {
     display: 'flex',
+    flex: 1,
     justifyContent: 'right',
     color: vars.color.bluegray10,
   },

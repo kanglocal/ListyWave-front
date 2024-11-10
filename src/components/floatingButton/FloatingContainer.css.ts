@@ -1,5 +1,5 @@
 import { style, keyframes, styleVariants } from '@vanilla-extract/css';
-import { vars } from '@/styles/__theme.css';
+import { vars } from '@/styles/theme.css';
 
 export const wrapper = style({
   width: '100%',
@@ -7,28 +7,29 @@ export const wrapper = style({
   margin: 'auto',
 
   position: 'fixed',
-  bottom: '96px',
+  bottom: '75px',
   zIndex: 3,
 });
 
 export const container = style({
   position: 'absolute',
   bottom: 0,
-  right: '26px',
+  right: '16px',
 
   display: 'flex',
   flexDirection: 'column',
-  gap: '8px',
+  alignItems: 'center',
+  gap: '12px',
 });
 
 export const basicButton = style({
-  width: '56px',
-  height: '56px',
-  padding: '1rem',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
 
-  background: vars.color.blue,
+  background: vars.color.white,
   borderRadius: '50%',
-  boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
+  boxShadow: '0px 0px 4px 0px rgba(142, 142, 142, 0.04), 0px 8px 16px 0px rgba(116, 116, 116, 0.08)',
   cursor: 'pointer',
 
   transition: 'all 0.1s linear',
@@ -44,17 +45,19 @@ const fadeIn = keyframes({
 });
 
 export const variant = styleVariants({
-  active: [
+  plusButton: [
     basicButton,
     {
-      transform: 'rotate(-45deg)',
+      width: 56,
+      height: 56,
     },
   ],
-  arrowUp: [
+  arrowUpButton: [
     basicButton,
     {
+      width: 44,
+      height: 44,
       animation: `${fadeIn} 500ms ease`,
-      filter: `opacity(0.5)`,
     },
   ],
 });
@@ -66,10 +69,6 @@ const dropdown = keyframes({
   '100%': {
     transform: 'translateY(0)',
   },
-});
-
-export const icon = style({
-  transform: 'translate(25%, 25%);',
 });
 
 export const menuButtons = style({

@@ -12,7 +12,8 @@ export const container = style({
 });
 
 export const contentInfo = style({
-  padding: '1.65rem 1.6rem 0.65rem 1.9rem',
+  height: 32,
+  margin: '1.65rem 1.6rem 0.65rem 1.9rem',
 
   display: 'flex',
   justifyContent: 'space-between',
@@ -89,7 +90,7 @@ export const scrollDivBottom = style({
 });
 
 export const visibleScrollDivTop = style({
-  top: '100px',
+  top: '83.5px',
   height: '83px',
   opacity: 1,
 });

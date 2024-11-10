@@ -25,13 +25,19 @@ const content = style({
   justifyContent: 'center',
   alignItems: 'center',
 
-  backgroundImage: imageUrl,
-  backgroundPosition: 'center',
   backgroundColor: vars.color.white,
 });
 
 export const contentVariant = styleVariants({
-  round: [content, { borderRadius: '100%' }],
+  round: [
+    content,
+    {
+      borderRadius: '100%',
+      background: `linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), ${imageUrl}`,
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+    },
+  ],
   square: [content, { borderRadius: 20 }],
 });
 
@@ -46,6 +52,7 @@ export const category = style([
 ]);
 
 export const info = style({
+  width: '70%',
   paddingTop: '0.6rem',
   paddingBottom: '0.5rem',
   display: 'flex',
@@ -65,6 +72,12 @@ export const title = styleVariants(fontColor, (color) => [
   {
     color,
     fontWeight: 600,
+    textAlign: 'center',
+
+    width: '100%',
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
+    whiteSpace: 'nowrap',
   },
 ]);
 
