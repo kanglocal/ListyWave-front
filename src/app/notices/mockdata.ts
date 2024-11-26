@@ -101,8 +101,8 @@ export const NOTICE_DETAIL_MOCKDATA: NoticeDetailType = {
       buttonLink: 'www.listywave.com',
     },
     {
-      type: 'notice',
-      description: '업데이트 안됨!',
+      type: 'note',
+      description: '유의사항\ntextarea로\n작성\n...\n...\n...',
       imageUrl: '',
       buttonName: '',
       buttonLink: '',
