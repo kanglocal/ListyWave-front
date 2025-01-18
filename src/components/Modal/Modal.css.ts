@@ -5,10 +5,13 @@ import { vars } from '@/styles/theme.css';
 export const background = style({
   margin: 'auto',
   width: '100vw',
+  maxWidth: 430,
   height: '100vh',
   zIndex: 100,
 
   position: 'fixed',
+  left: '50%',
+  transform: 'translateX(-50%)',
 
   display: 'flex',
   justifyContent: 'center',
@@ -45,6 +48,7 @@ export const sizeVariants = styleVariants<SizeVariantsType>({
     container,
     {
       minWidth: '327px',
+      maxWidth: '420px',
       width: '100%',
       margin: '0px 24px',
       padding: '6rem 2.5rem',

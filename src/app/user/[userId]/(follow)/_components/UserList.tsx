@@ -1,38 +1,26 @@
 'use client';
-
 import { ReactNode } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
-import UserProfileImage from '@/components/UserProfileImage/UserProfileImage';
 import deleteFollower from '@/app/_api/follow/deleteFollower';
+import { userLocale } from '@/app/user/locale';
 import { useUser } from '@/store/useUser';
+import { useLanguage } from '@/store/useLanguage';
 import { UserProfileType } from '@/lib/types/userProfileType';
 import { QUERY_KEYS } from '@/lib/constants/queryKeys';
+import useBooleanOutput from '@/hooks/useBooleanOutput';
+import DeleteModal from '@/components/DeleteModal/DeleteModal';
+import UserProfileImage from '@/components/UserProfileImage/UserProfileImage';
+import NoDataComponent from '@/components/NoData/NoDataComponent';
 
 import * as styles from './UserList.css';
-import NoDataComponent from '@/components/NoData/NoDataComponent';
-import getFollowerList from '@/app/_api/follow/getFollowerList';
-import { userLocale } from '@/app/user/locale';
-import { useLanguage } from '@/store/useLanguage';
-
-// const BUTTON_MESSAGE = {
-//   ko: {
-//     delete: '삭제',
-//   },
-// };
-//
-// const EMPTY_MESSAGE = {
-//   ko: {
-//     follower: '아직은 팔로워가 없어요',
-//     following: '아직 팔로우한 사람이 없어요',
-//   },
-// };
 
 function DeleteFollowerButton({ userId }: { userId: number }) {
   const { language } = useLanguage();
   const { user } = useUser();
   const queryClient = useQueryClient();
+  const { handleSetOff, handleSetOn, isOn } = useBooleanOutput();
 
   const deleteUser = useMutation({
     mutationKey: [QUERY_KEYS.deleteFollower, userId],
@@ -45,14 +33,14 @@ function DeleteFollowerButton({ userId }: { userId: number }) {
   });
 
   return (
-    <button
-      className={styles.button}
-      onClick={() => {
-        deleteUser.mutate();
-      }}
-    >
-      {userLocale[language].delete}
-    </button>
+    <>
+      <button className={styles.button} onClick={handleSetOn}>
+        {userLocale[language].delete}
+      </button>
+      {isOn && (
+        <DeleteModal handleClose={handleSetOff} handleCancel={handleSetOff} handleDelete={() => deleteUser.mutate()} />
+      )}
+    </>
   );
 }
 
@@ -62,19 +50,19 @@ interface UserProps {
   isOwner?: boolean;
 }
 
-function User({ user, button, isOwner }: UserProps) {
+function UserItem({ user, button, isOwner }: UserProps) {
   const router = useRouter();
 
   return (
-    <div className={styles.profileContainer}>
+    <div className={styles.item}>
       <div
-        className={styles.wrapper}
+        className={styles.profile}
         onClick={() => {
           router.push(`/user/${user.id}/mylist`);
         }}
       >
-        <UserProfileImage src={user.profileImageUrl} size={50} />
-        {user.nickname}
+        <UserProfileImage src={user.profileImageUrl} size={40} />
+        <span className={styles.nickname}>{user.nickname}</span>
       </div>
       {isOwner ? button : null}
     </div>
@@ -98,10 +86,15 @@ function UserList({ type, list }: UserListProps) {
         <NoDataComponent message={userLocale[language].empty[type]} />
       ) : (
         <>
-          {type === 'following' && list?.map((user: UserProfileType) => <User key={user.id} user={user} />)}
+          {type === 'following' && list?.map((user: UserProfileType) => <UserItem key={user.id} user={user} />)}
           {type === 'follower' &&
             list?.map((user: UserProfileType) => (
-              <User key={user.id} user={user} button={<DeleteFollowerButton userId={user.id} />} isOwner={isOwner} />
+              <UserItem
+                key={user.id}
+                user={user}
+                button={<DeleteFollowerButton userId={user.id} />}
+                isOwner={isOwner}
+              />
             ))}
         </>
       )}

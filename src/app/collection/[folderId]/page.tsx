@@ -125,10 +125,10 @@ export default function CollectionDetailPage({ params }: ParamType) {
     if (listData) {
       setValue(listData.pages[0].folderName);
     }
-  }, []);
+  }, [listData]);
 
   return (
-    <section className={styles.container}>
+    <section>
       <Collections
         collectionList={lists}
         folderName={listData?.pages[0].folderName ?? ''}

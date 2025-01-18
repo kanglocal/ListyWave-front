@@ -3,8 +3,12 @@ import { vars } from '@/styles/__theme.css';
 
 export const listBackground = createVar();
 
+export const listItemWrapper = style({
+  cursor: 'pointer',
+});
+
 export const wrapperOuter = style({
-  padding: '0 16px 30px',
+  padding: '0 16px 84px 16px',
   marginTop: '12px',
 
   display: 'flex',
@@ -112,6 +116,7 @@ export const profileImageWrapper = style({
   height: '30px',
 
   position: 'relative',
+  cursor: 'pointer',
 });
 
 export const ownerProfileImage = style({

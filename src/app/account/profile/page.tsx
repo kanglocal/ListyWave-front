@@ -1,4 +1,5 @@
 'use client';
+
 import { useEffect, useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
@@ -13,13 +14,12 @@ import toastMessage from '@/lib/constants/toastMessage';
 import { useUser } from '@/store/useUser';
 import getUserOne from '@/app/_api/user/getUserOne';
 import updateProfile from '@/app/_api/user/updateProfile';
-import Header from '@/components/Header/__Header';
+import Header from '@/components/Header/Header';
 import BlueButton from '@/components/BlueButton/BlueButton';
 
 import ProfileForm from './_components/ProfileForm';
 import * as styles from './page.css';
 import ImagePreview from './_components/ImagePreview';
-import ProfileSkeleton from './_components/ProfileSkeleton';
 import { useLanguage } from '@/store/useLanguage';
 import { accountLocale } from '@/app/account/locale';
 
