@@ -20,30 +20,34 @@ export const header = style({
   color: vars.color.red,
 });
 
-export const rank = style([
+const rankBadge = style([
   fonts.Label,
   {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    width: '4.2rem',
+    minWidth: '4.2rem',
     height: '2.6rem',
 
     color: vars.color.blue,
     backgroundColor: vars.color.lightblue,
     borderRadius: '1.5rem',
+
+    whiteSpace: 'nowrap',
   },
 ]);
 
-export const variantRank = styleVariants({
-  default: [rank],
-  first: [rank, { color: vars.color.white, backgroundColor: vars.color.blue }],
+export const variantRankBadge = styleVariants({
+  default: [rankBadge],
+  first: [rankBadge, { color: vars.color.white, backgroundColor: vars.color.blue }],
 });
 
 export const titleInput = style([
   fonts.BodyBold,
   {
     flexGrow: 1,
+    minWidth: '0',
+
     color: vars.color.bluegray10,
     '::placeholder': { color: vars.color.bluegray6 },
   },
@@ -57,13 +61,15 @@ export const accordionIconWrapper = style({
 
   width: '2rem',
   height: '2.6rem',
+  flexShrink: 0,
 });
 
 //콘텐트
 export const hr = style({
   width: '100%',
-  strokeWidth: '0.4rem ',
-  stroke: vars.color.bluegray8,
+  height: '0.4px',
+  backgroundColor: vars.color.bluegray6,
+  border: 0,
 });
 
 export const content = style({
